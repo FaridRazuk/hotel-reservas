@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Hotel Reservas</title>
+    <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+    <header class="encabezado">
+        <a href="index.html" class="logo">Hotel Reservas</a>
+        <nav id="menu"></nav>
+    </header>
+
+    <main class="contenedor">
+        <section class="tarjeta tarjeta-angosta">
+            <h1>Crear cuenta</h1>
+
+            <form id="form-registro" class="formulario">
+                <p id="mensaje" class="mensaje" role="alert"></p>
+
+                <div class="campo">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+                </div>
+
+                <div class="campo">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                </div>
+
+                <div class="campo">
+                    <label for="password">Contraseña (mínimo 6 caracteres)</label>
+                    <input type="password" id="password" name="password" autocomplete="new-password" minlength="6" required>
+                </div>
+
+                <div class="campo">
+                    <label for="confirmar">Repetir contraseña</label>
+                    <input type="password" id="confirmar" name="confirmar" autocomplete="new-password" required>
+                </div>
+
+                <button type="submit" class="btn">Registrarme</button>
+            </form>
+
+            <p class="texto-secundario">¿Ya tenés cuenta? <a href="login.html">Iniciá sesión</a></p>
+        </section>
+    </main>
+
+    <footer class="pie">
+        <p>&copy; 2026 Hotel Reservas</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

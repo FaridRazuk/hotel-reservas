@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis reservas - Hotel Reservas</title>
+    <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+    <header class="encabezado">
+        <a href="index.html" class="logo">Hotel Reservas</a>
+        <nav id="menu"></nav>
+    </header>
+
+    <main class="contenedor">
+        <h1>Mis reservas</h1>
+        <p id="mensaje" class="mensaje" role="alert"></p>
+
+        <h2 class="seccion-titulo">Reservas activas</h2>
+        <section id="activas" class="grilla"></section>
+
+        <h2 class="seccion-titulo">Reservas canceladas</h2>
+        <section id="canceladas" class="grilla"></section>
+    </main>
+
+    <footer class="pie">
+        <p>&copy; 2026 Hotel Reservas</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/mis-reservas.js"></script>
+</body>
+</html>

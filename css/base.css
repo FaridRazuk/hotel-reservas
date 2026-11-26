@@ -1,0 +1,482 @@
+    :root {
+    --color-primario: #1e3a5f;
+    --color-acento: #c9a227;
+    --color-fondo: #f4f6f8;
+    --color-texto: #1f2933;
+    --color-borde: #d9dee3;
+    --color-peligro: #b42318;
+    --radio: 8px;
+    --sombra: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+}
+
+a {
+    color: var(--color-primario);
+}
+
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: var(--color-primario);
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+}
+
+#menu a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#menu a:hover {
+    color: var(--color-acento);
+}
+
+#menu button {
+    padding: 6px 12px;
+    border: 1px solid #ffffff;
+    border-radius: var(--radio);
+    background: transparent;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#menu button:hover {
+    background-color: #ffffff;
+    color: var(--color-primario);
+}
+
+.contenedor {
+    flex: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.pie {
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    background-color: #ffffff;
+    border-top: 1px solid var(--color-borde);
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radio);
+    background-color: var(--color-primario);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+.btn-peligro {
+    background-color: var(--color-peligro);
+}
+
+@media (max-width: 767px) {
+    .encabezado {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 15px 20px;
+    }
+}
+
+.tarjeta {
+    padding: 30px;
+    background-color: #ffffff;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+.tarjeta-angosta {
+    max-width: 420px;
+    margin: 40px auto;
+}
+
+.tarjeta h1 {
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+    padding: 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.formulario .btn {
+    width: 100%;
+}
+
+.mensaje {
+    margin-bottom: 15px;
+    color: var(--color-peligro);
+}
+
+.mensaje:empty {
+    display: none;
+}
+
+.texto-secundario {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.contenedor h1 {
+    margin-bottom: 20px;
+}
+
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.habitacion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.habitacion h2 {
+    font-size: 22px;
+}
+
+.precio {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-primario);
+}
+
+.habitacion .btn {
+    align-self: flex-start;
+}
+
+.detalle {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.detalle h1 {
+    margin-bottom: 10px;
+}
+
+.formulario-reserva {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-borde);
+}
+
+.formulario-reserva h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.total {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.mensaje.ok {
+    color: #1a7f37;
+}
+
+.volver {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.seccion-titulo {
+    margin: 30px 0 15px;
+    font-size: 22px;
+}
+
+.reserva {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.reserva h3 {
+    font-size: 20px;
+}
+
+.estado {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.estado-pendiente {
+    background-color: #fff4cc;
+    color: #7a5b00;
+}
+
+.estado-confirmada {
+    background-color: #d9f2e1;
+    color: #1a7f37;
+}
+
+.estado-cancelada {
+    background-color: #fde2e0;
+    color: var(--color-peligro);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.tarjeta-form {
+    margin-bottom: 30px;
+}
+
+.tarjeta-form h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.campo-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.formulario .btn + .btn {
+    margin-top: 10px;
+}
+
+.btn-secundario {
+    background-color: #6b7280;
+}
+
+.btn-chico {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border: 1px solid var(--color-borde);
+}
+
+.tabla th,
+.tabla td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla th {
+    background-color: var(--color-primario);
+    color: #ffffff;
+}
+
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filtros {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.filtros select,
+.tabla select {
+    padding: 6px 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background-color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 20px 0 30px;
+}
+
+.kpi {
+    text-align: center;
+}
+
+.kpi-numero {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--color-primario);
+}
+
+.kpi-pendiente .kpi-numero {
+    color: #b7791f;
+}
+
+.kpi-confirmada .kpi-numero {
+    color: #1a7f37;
+}
+
+.kpi-cancelada .kpi-numero {
+    color: var(--color-peligro);
+}
+
+.grafico h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.dona {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+}
+
+.dona::after {
+    content: attr(data-total);
+    position: absolute;
+    inset: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.leyenda {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 25px;
+    list-style: none;
+}
+
+.leyenda li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.muestra {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+}
+
+.portada {
+    padding: 60px 30px;
+    text-align: center;
+    background-color: var(--color-primario);
+    color: #ffffff;
+    border-radius: var(--radio);
+}
+
+.portada h1 {
+    margin-bottom: 15px;
+    font-size: 38px;
+}
+
+.portada p {
+    max-width: 560px;
+    margin: 0 auto 25px;
+}
+
+.acciones-portada {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.portada .btn {
+    background-color: var(--color-acento);
+    color: var(--color-primario);
+    font-weight: bold;
+}
+
+.portada .btn-secundario {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+.ventajas {
+    margin-top: 30px;
+}
+
+.ventajas h2 {
+    margin-bottom: 8px;
+    font-size: 20px;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de habitación - Hotel Reservas</title>
+    <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+    <header class="encabezado">
+        <a href="index.html" class="logo">Hotel Reservas</a>
+        <nav id="menu"></nav>
+    </header>
+
+    <main class="contenedor">
+        <a href="habitaciones.html" class="volver">&larr; Volver a las habitaciones</a>
+
+        <section id="detalle" class="tarjeta detalle" hidden>
+            <h1 id="titulo"></h1>
+            <p id="precio" class="precio"></p>
+
+            <form id="form-reserva" class="formulario formulario-reserva">
+                <h2>Reservar</h2>
+                <p id="mensaje" class="mensaje" role="alert"></p>
+
+                <div class="campo">
+                    <label for="checkin">Fecha de entrada</label>
+                    <input type="date" id="checkin" name="checkin" required>
+                </div>
+
+                <div class="campo">
+                    <label for="checkout">Fecha de salida</label>
+                    <input type="date" id="checkout" name="checkout" required>
+                </div>
+
+                <p id="total" class="total"></p>
+
+                <button type="submit" class="btn">Confirmar reserva</button>
+            </form>
+        </section>
+
+        <section id="no-encontrada" class="tarjeta detalle" hidden>
+            <p>Esa habitación no existe o no está disponible.</p>
+        </section>
+    </main>
+
+    <footer class="pie">
+        <p>&copy; 2026 Hotel Reservas</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/detalle.js"></script>
+</body>
+</html>

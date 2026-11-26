@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Hotel Reservas</title>
+    <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+    <header class="encabezado">
+        <a href="index.html" class="logo">Hotel Reservas</a>
+        <nav id="menu"></nav>
+    </header>
+
+    <main class="contenedor">
+        <h1>Dashboard</h1>
+        <p id="actualizado" class="texto-secundario"></p>
+
+        <section class="kpis">
+            <article class="tarjeta kpi">
+                <p id="kpi-total" class="kpi-numero">0</p>
+                <p>Reservas totales</p>
+            </article>
+            <article class="tarjeta kpi kpi-pendiente">
+                <p id="kpi-pendientes" class="kpi-numero">0</p>
+                <p>Pendientes</p>
+            </article>
+            <article class="tarjeta kpi kpi-confirmada">
+                <p id="kpi-confirmadas" class="kpi-numero">0</p>
+                <p>Confirmadas</p>
+            </article>
+            <article class="tarjeta kpi kpi-cancelada">
+                <p id="kpi-canceladas" class="kpi-numero">0</p>
+                <p>Canceladas</p>
+            </article>
+        </section>
+
+        <section class="tarjeta grafico">
+            <h2>Distribución de reservas por estado</h2>
+            <p id="sin-datos" hidden>Todavía no hay reservas para graficar.</p>
+            <div id="contenedor-grafico">
+                <div id="dona" class="dona" role="img" aria-label="Gráfico de dona con la cantidad de reservas por estado"></div>
+                <ul id="leyenda" class="leyenda"></ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="pie">
+        <p>&copy; 2026 Hotel Reservas</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

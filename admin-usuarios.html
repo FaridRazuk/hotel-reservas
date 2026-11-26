@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar usuarios - Hotel Reservas</title>
+    <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+    <header class="encabezado">
+        <a href="index.html" class="logo">Hotel Reservas</a>
+        <nav id="menu"></nav>
+    </header>
+
+    <main class="contenedor">
+        <h1>Administrar usuarios</h1>
+        <p id="mensaje" class="mensaje" role="alert"></p>
+
+        <section class="tarjeta tarjeta-form">
+            <h2>Nuevo usuario</h2>
+
+            <form id="form-usuario" class="formulario">
+                <div class="campo">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="campo">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="campo">
+                    <label for="password">Contraseña (mínimo 6 caracteres)</label>
+                    <input type="password" id="password" name="password" autocomplete="new-password" minlength="6" required>
+                </div>
+
+                <div class="campo">
+                    <label for="rol">Rol</label>
+                    <select id="rol" name="rol" required>
+                        <option value="USUARIO">Usuario</option>
+                        <option value="ADMIN">Administrador</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Crear usuario</button>
+            </form>
+        </section>
+
+        <section id="seccion-password" class="tarjeta tarjeta-form" hidden>
+            <h2 id="titulo-password"></h2>
+
+            <form id="form-password" class="formulario">
+                <div class="campo">
+                    <label for="nueva-password">Nueva contraseña (mínimo 6 caracteres)</label>
+                    <input type="password" id="nueva-password" name="nueva-password" autocomplete="new-password" minlength="6" required>
+                </div>
+
+                <div class="campo">
+                    <label for="confirmar-password">Repetir nueva contraseña</label>
+                    <input type="password" id="confirmar-password" name="confirmar-password" autocomplete="new-password" required>
+                </div>
+
+                <button type="submit" class="btn">Guardar contraseña</button>
+                <button type="button" id="btn-cancelar-password" class="btn btn-secundario">Cancelar</button>
+            </form>
+        </section>
+
+        <h2 class="seccion-titulo">Usuarios registrados</h2>
+        <div class="tabla-contenedor">
+            <table class="tabla">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-usuarios"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="pie">
+        <p>&copy; 2026 Hotel Reservas</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/admin-usuarios.js"></script>
+</body>
+</html>
