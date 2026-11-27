@@ -1,77 +1,141 @@
-// CAPA DE DATOS TEMPORAL: simula mockapi usando localStorage.
-// Cuando mockapi esté listo, se reemplaza el contenido de este archivo
-// y el resto del sistema no se entera.
+// CAPA DE DATOS. Se comunica con mockapi.io mediante fetch.
+// Si un recurso no tiene dirección configurada (null), usa localStorage (temporal).
+
+const API_URLS = {
+    users: "https://6b075aa258419b87a4382c8e.mockapi.io",
+    rooms: "https://6b075aa258419b87a4382c8e.mockapi.io",
+    reservations: "https://6b08c8026a4ecd58b006ab99.mockapi.io"
+};
+
+// ---------- Almacenamiento local (temporal) ----------
 
 const DB_KEY = "hotel_db";
 
-const datosIniciales = {
-    users: [
-        { id: "1", nombre: "Administrador", email: "admin@hotel.com", password: "admin123", role: "ADMIN" },
-        { id: "2", nombre: "Usuario de prueba", email: "usuario@hotel.com", password: "user123", role: "USUARIO" }
-    ],
-    rooms: [
-        { id: "1", tipo: "Simple", precio: 30000, disponible: true },
-        { id: "2", tipo: "Doble", precio: 50000, disponible: true },
-        { id: "3", tipo: "Suite", precio: 90000, disponible: true },
-        { id: "4", tipo: "Familiar", precio: 70000, disponible: false }
-    ],
-    reservations: []
+const leerDB = () => {
+    const guardado = localStorage.getItem(DB_KEY);
+    return guardado ? JSON.parse(guardado) : {};
 };
 
 const guardarDB = (db) => {
     localStorage.setItem(DB_KEY, JSON.stringify(db));
 };
 
-const leerDB = () => {
-    const guardado = localStorage.getItem(DB_KEY);
-    if (guardado) {
-        return JSON.parse(guardado);
-    }
-    guardarDB(datosIniciales);
-    return datosIniciales;
-};
+const localGetAll = (recurso) => leerDB()[recurso] || [];
 
-// Funciones de lectura. Son async porque fetch (con mockapi) es asíncrono:
-// así el resto del código queda preparado y no hay que cambiarlo después.
+const localGetById = (recurso, id) =>
+    localGetAll(recurso).find((item) => item.id === String(id)) || null;
 
-const getAll = async (recurso) => {
+const localCreate = (recurso, datos) => {
     const db = leerDB();
-    return db[recurso];
-};
-
-const getById = async (recurso, id) => {
-    const db = leerDB();
-    return db[recurso].find((item) => item.id === String(id));
-};
-
-const create = async (recurso, datos) => {
-    const db = leerDB();
-    const ids = db[recurso].map((item) => Number(item.id));
+    const lista = db[recurso] || [];
+    const ids = lista.map((item) => Number(item.id));
     const nuevoId = String(ids.length > 0 ? Math.max(...ids) + 1 : 1);
     const nuevo = { ...datos, id: nuevoId };
-    db[recurso].push(nuevo);
+    lista.push(nuevo);
+    db[recurso] = lista;
     guardarDB(db);
     return nuevo;
 };
 
-const update = async (recurso, id, datos) => {
+const localUpdate = (recurso, id, datos) => {
     const db = leerDB();
-    const indice = db[recurso].findIndex((item) => item.id === String(id));
+    const lista = db[recurso] || [];
+    const indice = lista.findIndex((item) => item.id === String(id));
     if (indice === -1) {
         return null;
     }
-    db[recurso][indice] = { ...db[recurso][indice], ...datos, id: String(id) };
+    lista[indice] = { ...lista[indice], ...datos, id: String(id) };
+    db[recurso] = lista;
     guardarDB(db);
-    return db[recurso][indice];
+    return lista[indice];
+};
+
+const localRemove = (recurso, id) => {
+    const db = leerDB();
+    const lista = db[recurso] || [];
+    const indice = lista.findIndex((item) => item.id === String(id));
+    if (indice === -1) {
+        return null;
+    }
+    const [borrado] = lista.splice(indice, 1);
+    db[recurso] = lista;
+    guardarDB(db);
+    return borrado;
+};
+
+// ---------- Pedidos a mockapi ----------
+
+const pedir = async (url, opciones = {}) => {
+    const respuesta = await fetch(url, {
+        headers: { "Content-Type": "application/json" },
+        ...opciones
+    });
+
+    if (respuesta.status === 404) {
+        return null;
+    }
+
+    if (!respuesta.ok) {
+        throw new Error("Error " + respuesta.status + " al comunicarse con el servidor");
+    }
+
+    return respuesta.json();
+};
+
+const urlRecurso = (base, recurso, id) =>
+    base + "/" + recurso + (id === undefined ? "" : "/" + encodeURIComponent(id));
+
+// ---------- Funciones que usa el resto del sistema ----------
+
+const getAll = async (recurso) => {
+    const base = API_URLS[recurso];
+    if (!base) {
+        return localGetAll(recurso);
+    }
+    const datos = await pedir(urlRecurso(base, recurso));
+    return datos || [];
+};
+
+const getById = async (recurso, id) => {
+    const base = API_URLS[recurso];
+    if (!base) {
+        return localGetById(recurso, id);
+    }
+    return pedir(urlRecurso(base, recurso, id));
+};
+
+const create = async (recurso, datos) => {
+    const base = API_URLS[recurso];
+    if (!base) {
+        return localCreate(recurso, datos);
+    }
+    const { id, ...sinId } = datos;
+    return pedir(urlRecurso(base, recurso), {
+        method: "POST",
+        body: JSON.stringify(sinId)
+    });
+};
+
+const update = async (recurso, id, datos) => {
+    const base = API_URLS[recurso];
+    if (!base) {
+        return localUpdate(recurso, id, datos);
+    }
+    const actual = await getById(recurso, id);
+    if (!actual) {
+        return null;
+    }
+    const nuevo = { ...actual, ...datos, id: String(id) };
+    return pedir(urlRecurso(base, recurso, id), {
+        method: "PUT",
+        body: JSON.stringify(nuevo)
+    });
 };
 
 const remove = async (recurso, id) => {
-    const db = leerDB();
-    const indice = db[recurso].findIndex((item) => item.id === String(id));
-    if (indice === -1) {
-        return null;
+    const base = API_URLS[recurso];
+    if (!base) {
+        return localRemove(recurso, id);
     }
-    const [borrado] = db[recurso].splice(indice, 1);
-    guardarDB(db);
-    return borrado;
+    return pedir(urlRecurso(base, recurso, id), { method: "DELETE" });
 };
