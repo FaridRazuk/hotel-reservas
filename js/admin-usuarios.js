@@ -1,4 +1,4 @@
-// ADMIN: GESTIÓN DE USUARIOS. Requiere api.js, session.js, menu.js y utils.js.
+// ADMIN: GESTIÓN DE USUARIOS. 
 
 const sesion = requerirSesion("ADMIN");
 

@@ -1,4 +1,4 @@
-// REGISTRO. Requiere api.js y session.js cargados antes.
+// REGISTRO. 
 
 const sesionActual = obtenerSesion();
 if (sesionActual) {

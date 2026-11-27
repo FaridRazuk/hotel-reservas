@@ -1,4 +1,4 @@
-// DETALLE Y RESERVA. Requiere api.js, session.js, menu.js y utils.js.
+// DETALLE Y RESERVA.
 
 const sesion = requerirSesion("USUARIO");
 

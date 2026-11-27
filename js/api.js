@@ -1,5 +1,4 @@
-// CAPA DE DATOS. Se comunica con mockapi.io mediante fetch.
-// Si un recurso no tiene dirección configurada (null), usa localStorage (temporal).
+// CAPA DE DATOS. Se comunica con mockapi.io.
 
 const API_URLS = {
     users: "https://6b075aa258419b87a4382c8e.mockapi.io",

@@ -1,4 +1,4 @@
-// MANEJO DE LA SESIÓN. Requiere que js/api.js esté cargado antes.
+// MANEJO DE LA SESIÓN. 
 
 const SESSION_KEY = "hotel_session";
 

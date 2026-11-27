@@ -1,4 +1,4 @@
-// ADMIN: GESTIÓN DE RESERVAS. Requiere api.js, session.js, menu.js y utils.js.
+// ADMIN: GESTIÓN DE RESERVAS.
 
 const sesion = requerirSesion("ADMIN");
 

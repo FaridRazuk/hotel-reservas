@@ -1,4 +1,4 @@
-// CATÁLOGO DE HABITACIONES. Requiere api.js, session.js, menu.js y utils.js.
+// CATÁLOGO DE HABITACIONES.
 
 requerirSesion("USUARIO");
 

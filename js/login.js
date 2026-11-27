@@ -1,4 +1,4 @@
-// LOGIN. Requiere api.js y session.js cargados antes.
+// LOGIN.
 
 const sesionActual = obtenerSesion();
 if (sesionActual) {

@@ -1,4 +1,4 @@
-// MENÚ DINÁMICO SEGÚN EL ROL. Requiere api.js y session.js cargados antes.
+// MENÚ DINÁMICO SEGÚN EL ROL. 
 
 const MENUS = {
     SIN_SESION: [

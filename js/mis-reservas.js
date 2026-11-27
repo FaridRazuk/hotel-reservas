@@ -1,4 +1,4 @@
-// MIS RESERVAS. Requiere api.js, session.js, menu.js y utils.js.
+// MIS RESERVAS. 
 
 const sesion = requerirSesion("USUARIO");
 

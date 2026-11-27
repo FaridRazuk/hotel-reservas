@@ -1,5 +1,4 @@
-// DASHBOARD. Requiere api.js, session.js, menu.js y utils.js cargados antes.
-// El gráfico se arma solo con HTML, CSS y JavaScript (conic-gradient).
+// DASHBOARD.
 
 const sesion = requerirSesion("ADMIN");
 

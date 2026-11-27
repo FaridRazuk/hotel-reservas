@@ -1,4 +1,4 @@
-// PÁGINA DE INICIO. Requiere api.js, session.js y menu.js cargados antes.
+// PÁGINA DE INICIO. 
 
 const acciones = document.getElementById("acciones");
 const sesionActiva = obtenerSesion();

@@ -1,4 +1,4 @@
-// ADMIN: ABM DE HABITACIONES. Requiere api.js, session.js, menu.js y utils.js.
+// ADMIN: ABM DE HABITACIONES.
 
 const sesion = requerirSesion("ADMIN");
 
